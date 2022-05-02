@@ -72,4 +72,4 @@ VC Broker is a technological component that represents an agent in protocol comm
 
 The conecptual v
 
-![VCBP generic architecture](vc-brokerage-architecture.jpg)
+![VCBP generic architecture](vc-brokerage-architecture.png)
