@@ -1,9 +1,10 @@
-# Verifiable Credentials Brokerage protocol and framework overview
+# Verifiable Credentials Brokerage Protocol and framework overview
 
 ## Introduction
 
 SSI itself is a specific trust protocol and a trust architecture with more or less defined [characteristics]()
-and implementation requirements. [Decentralized Identifiers (DIDs)]() and [Verifiable Credentials (VCs)]() 
+and implementation requirements. [Decentralized Identifiers (DIDs)](https://www.w3.org/TR/did-core/) 
+and [Verifiable Credentials (VCs)](https://www.w3.org/TR/vc-data-model/) 
 become important components of digital trust to serve Web3 community with their privacy, identity
 and security demands. In the present, there are dozens of VC implementations, quite a number 
 of architectural approaches of different levels of maturity and capability, a handful of standardization attempts. 
@@ -39,7 +40,9 @@ brokerage protocol. **VC Brokerage Protocol**
 - defines a way to share and access common configuration items of the protocol, like VC schemas registries;
 - defines a way for brokers to discover other brokers in the communication network.
 
-A well-developed example of similar brokerage protocol is [DIDComm](), though it's not referenced to as such. 
+One can find a developed example of similar brokerage protocol in  
+[DIDComm v2.0](https://identity.foundation/didcomm-messaging/spec/#discover-features-protocol-20), 
+though it's not referenced to as such. 
 Relatively to VCBP, DIDComm protocol stands below in the communication stack, so that DIDComm messaging may be used 
 to support VCBP in more native Web3 manner than e.g. plain HTTPS.
 
