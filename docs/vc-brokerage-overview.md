@@ -18,7 +18,7 @@ to bring certain conceptual novelty, optimize market fit, and reduce total techn
 The principal part of the Identix approach to Self Sovereign Identity is the concepts 
 of *brokerage of verifiable credentials* and *VC brokerage protocol*.
 
-A concept that currently became very popular in Web3 is the concept of [agency](). *Agent* (principal, subject) 
+The concept of [agency]() currently became very popular in Web3. *Agent* (principal, subject) 
 is a multidimensional notion that can represent both human and computational entities. 
 Networks of agents and transactional models of interaction 
 is a consensual, de-facto standard way to think about processes in digital society and economy. 
