@@ -19,15 +19,17 @@ a number of internal services and components, and rely on Everscale as a backbon
 
 ![Identix solution architecture for Stage 4](idx-ecosystem-stage4.png)
 
-## Identix SSO, DID management and custodial wallets
 Identix Single Sign-On is a service that allows both Web2 and Web3 users become parties of 
 decentralized trust relationships and participants of trust transactions using [DIDs](https://www.w3.org/TR/did-core/).
 Google, Facebook, Twitter users may utilize their corresponding Web2 accounts to create a *custodial wallet* via 
 Identix SSO by literally one click. For [Everwallet](https://wallet.broxus.com/) users there is also a possibility to
-create a DID using a connected wallet.
+create a DID using a connected wallet. The created DID then associated with used Web2 or Web3 account to control
 
-The proposed solution implements 'custodial wallets' to control DIDs and VCs for both cases, since there is no
-fully functional [VcWallet](vc-brokerage-overview.md#vcwallet) currently in the market.
+> The proposed solution implements 'custodial wallets' to control DIDs and VCs for both cases, since there is no
+fully functional [VcWallet](vc-brokerage-overview.md#vcwallet) currently in the market. That means that 
+Identix keeps a key pair and operates in VCBP on behalf of a user. In the future, when the VcWallet implementation
+will appear, control transfer of these DIDs to non-custodial wallets will be possible. 
 
+Identix SSO also allows registered third-party applications to use the single sign-on functionality to bring their 
+user audience into the world of decentralized trust. 
 
-## Anchoring system
