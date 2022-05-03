@@ -38,7 +38,7 @@ brokerage protocol. **VC Brokerage Protocol**
 - defines a way to share and access common configuration items of the protocol, like VC schemas registries;
 - defines a way for brokers to discover other brokers in the communication network.
 
-One can find a developed example of similar brokerage protocol in  
+One can find a developed example of similar brokerage protocol in 
 [DIDComm v2.0](https://identity.foundation/didcomm-messaging/spec/#discover-features-protocol-20), 
 though it's not referenced as such. 
 Relatively to VCBP, DIDComm protocol stands below in the communication stack, so that DIDComm messaging may be used 
@@ -46,7 +46,7 @@ to support VCBP in more native Web3 manner than e.g. plain HTTPS.
 
 ## VCBP agency model and DIDs
 
-An agent in VCBP is a digital identity, which impersonate a real-world principal, uniquely represented 
+An agent in VCBP is a digital identity, which impersonates a real-world principal, uniquely represented 
 by a decentralized identifier (DID), capable to perform protocol operations via authorized digital services.
 
 ![VCBP Agency](vcbp-agency.png)
@@ -137,6 +137,13 @@ VcWallet is one of possible realizations of a VCBP agent. A simple design of it 
 There can be many options to physically store the vault data in a secure manner (IPFS, cold storage, S3...);
 - UI to communicate to a user, a trust party, who is impersonated by the agent
 - VC Broker.
+
+The notion of 'wallet' here used due to common Web3 practice to impersonate an actor/user of blockchain or DeFi
+service via a *wallet* application. For the purposes of making financial transactions, a wallet app privately keeps 
+a key pair, thus embodying an identity of a digital actor. VCBP requires more data to represent an agent, since
+trust transactions are more complex, and requires more than merely 'signing' operation as an agent's interface. 
+'VcWallet' therefore becomes a trade-off term: it supersedes common 'wallets', but still recognizable for 
+its protocol role for a user.
 
 ## Protocol extensibility dimensions
 
