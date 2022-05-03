@@ -1,19 +1,17 @@
-# Verifiable Credentials Brokerage Protocol and framework overview
+# Verifiable Credentials Brokerage protocol and framework overview
 
 ## Introduction
 
-SSI itself is a specific trust protocol and a trust architecture with more or less defined [characteristics]()
-and implementation requirements. [Decentralized Identifiers (DIDs)](https://www.w3.org/TR/did-core/) 
-and [Verifiable Credentials (VCs)](https://www.w3.org/TR/vc-data-model/) 
-become important components of digital trust to serve Web3 community with their privacy, identity
-and security demands. In the present, there are dozens of VC implementations, quite a number 
-of architectural approaches of different levels of maturity and capability, a handful of standardization attempts. 
+Self Sovereign Identity (SSI) itself is a specific trust protocol and a trust architecture with more or less defined [characteristics]()
+and implementation requirements. [Decentralized Identifiers (DIDs)](https://www.w3.org/TR/did-core/) and [Verifiable Credentials (VCs)](https://www.w3.org/TR/vc-data-model/) 
+become important components of digital trust to serve the Web3 community with their privacy, identity, and security demands. At the present, there are dozens of VC implementations, quite a number 
+of architectural approaches of different levels of maturity and capability, and a handful of standardization attempts. 
 Still, the Web3 community and the DeFi market are highly diverse in technological and business dimensions, 
 thus there is a lot of room for differentiation and experiments. 
 
-Identix develops its own approach to SSI and decentralized trust. We strive to comply with known W3C standards
-and to take into account the experience of other communities (DIF, Hyperledger Aries, OpenID etc.), while attempting 
-to bring certain conceptual novelty, optimize market fit and reduce total technological costs for an SSI solution.
+Identix.Space team develops its own approach to SSI and decentralized trust. We strive to comply with known W3C standards
+and to take into account the experience of other communities (DIF, Hyperledger Aries, OpenID, etc.), while attempting 
+to bring certain conceptual novelty, optimize market fit, and reduce total technological costs for an SSI solution.
 
 ## VC Brokerage Protocol
 
@@ -42,7 +40,7 @@ brokerage protocol. **VC Brokerage Protocol**
 
 One can find a developed example of similar brokerage protocol in  
 [DIDComm v2.0](https://identity.foundation/didcomm-messaging/spec/#discover-features-protocol-20), 
-though it's not referenced to as such. 
+though it's not referenced as such. 
 Relatively to VCBP, DIDComm protocol stands below in the communication stack, so that DIDComm messaging may be used 
 to support VCBP in more native Web3 manner than e.g. plain HTTPS.
 
