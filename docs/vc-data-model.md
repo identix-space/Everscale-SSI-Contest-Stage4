@@ -73,8 +73,8 @@ plus an Everscale smart contract for VC anchoring (see [VC anchoring](#vc-anchor
 2. **VC syntax layer** contract regulates how the transmitted object is interpreted to be a Verifiable Credential 
 having its specific properties. We chose the Verifiable Credentials Data Model W3C Recommendation 
 [v1.1](https://www.w3.org/TR/vc-data-model/) over JSON as the VC syntax standard.
-3. **Claim syntax layer** contract specifies how a semantic identity of a *claim*,
-shared in a [semantic community](https://semanticcommunity.org/SemanticCommunity.aspx), is represented to have
+3. **Claim syntax layer** contract specifies how a semantic identity of a *claim*, shared in 
+a [semantic community](https://semanticcommunity.org/SemanticCommunity.aspx), is represented to have
 the same meaning for all parties of trust relationships. W3C standards tend to reuse one of the most elaborated syntaxes
 to represent domain semantics: [JSON for Linked Data](https://w3c.github.io/json-ld-syntax/). It definitely makes sense
 in the long run, but this approach has a [number of drawbacks]() in terms of cognitive load, performance, total cost
