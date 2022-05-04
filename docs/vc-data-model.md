@@ -73,13 +73,13 @@ plus an Everscale smart contract for VC anchoring (see [VC anchoring](#vc-anchor
 2. **VC syntax layer** contract regulates how the transmitted object is interpreted to be a Verifiable Credential 
 having its specific properties. We chose the Verifiable Credentials Data Model W3C Recommendation 
 [v1.1](https://www.w3.org/TR/vc-data-model/) over JSON as the VC syntax standard.
-3. **Claim syntax layer** contract specifies how a semantic identity of a *claim*, 
-shared in a [semantic community](https://semanticcommunity.org/SemanticCommunity.aspx), is represented to have 
+3. **Claim syntax layer** contract specifies how a semantic identity of a *claim*,
+shared in a [semantic community](https://semanticcommunity.org/SemanticCommunity.aspx), is represented to have
 the same meaning for all parties of trust relationships. W3C standards tend to reuse one of the most elaborated syntaxes
 to represent domain semantics: [JSON for Linked Data](https://w3c.github.io/json-ld-syntax/). It definitely makes sense
-in the long run, but this approach has a [number of drawbacks]() in terms of cognitive load, performance, total cost 
-and overall solution complexity. Particularly for the VC context, there are issues related to 
-zero knowledge proofs and partial disclosure concerns, which e.g. motivated Hyperledger team to elaborate on 
+in the long run, but this approach has a [number of drawbacks]() in terms of cognitive load, performance, total cost
+and overall solution complexity. Particularly for the VC context, there are issues related to
+zero knowledge proofs and partial disclosure concerns, which e.g. motivated Hyperledger team to elaborate on
 a specific binary format for representing claims: [anoncreds](https://github.com/hyperledger/indy-hipe/tree/main/text/0109-anoncreds-protocol).
 <br>The presented Stage 4 solution introduces a hybrid approach, which allows simple claims, represented as
 [RDF triples](https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple) to be compacted in a set of
