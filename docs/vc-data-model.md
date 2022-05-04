@@ -151,13 +151,13 @@ so the definitions can be validated by any [JSON Schema validator](http://json-s
 > The Stage 4 schema repository contains a Python 3 validator script that does the validation of the whole set of schemas
 > See here [https://github.com/identix-space/schemas](https://github.com/identix-space/schemas)
 
-> Example<br>
-> Let the DID `did:ever:123` was acquired by a respected individual we know as Pete Petrov. Then the triplet<br>
-> `"did:ever:123" “has_first_name” “Pete”`<br>
-> specifies (the claim syntax) that such association exists somewhere, and that certified by a trusted agent - issuer.<br>
-> `"did:ever:123" “has_last_name” “Petrov”`<br>
-> gives us another valuable claim, which combined may form a group "names" for a Government ID verifiable credential.
-> Corresponding VC Claim Specification (name it `StateID`), which includes a requirement like `["has_first_name", "has_first_name"]`
+### Example
+Let the DID `did:ever:123` was acquired by a respected individual we know as Pete Petrov. Then the triplet<br>
+`"did:ever:123" “has_first_name” “Pete”`<br>
+specifies (the claim syntax) that such association exists somewhere, and that certified by a trusted agent - issuer.<br>
+`"did:ever:123" “has_last_name” “Petrov”`<br>
+gives us another valuable claim, which combined may form a group "names" for a Government ID verifiable credential.
+Corresponding VC Claim Specification (name it `StateID`), which includes a requirement like `["has_first_name", "has_first_name"]`
 requires all VCs, which declare compliance with this specification to have claims with the indicated predicates.
 
 ### Lifecycle of VC Claim Specification
@@ -172,10 +172,8 @@ requires all VCs, which declare compliance with this specification to have claim
 | Verifying a VC instance | Checking that the entire group of certificates associated with each group of claims comply with requirements of required trust protocol (cryptographic signature, expiration date, etc.) |
 | Revocation of a specification | Formal revocation of a VCCS is not expected. The actual decommissioning of a VCCS instance (for example, as a result of a failure of the registrar's service) only means the absence of a public contract. This does not imply the termination of trust relationships between counterparties, but only limits, complicates or reduces the level of trust in them, which remains at the discretion of the counterparties. |
 
-
-## VC representation
-
 ## VC anchoring
+
 
 ## Notes on cryptography
 Ed25519 -> schorr, ZKP
