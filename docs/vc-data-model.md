@@ -29,14 +29,32 @@ digital trust relationships the Stage 4 implementation covers the following, as 
 
 According to this requirement, the Stage 4 solution realizes the following procedures:
 1. An Agent signs in to Identix.PASS and can act impersonating any of normative roles: 
-Holder, Issuer.
-   > Verifier without any additional effort to switch a role. Successful sign in attempt results creates
-or activates a user account with associated DID.
-2. As an Issuer, the agent can issue a VC of a type of choice to a Holder, by specifying the Holder's DID.
-   > VC issuance requests from Holder to Issuer is a subject for further developments and is not implemented for the Stage 4.
-3. 
+Holder, Issuer, Verifier. Successful sign in attempt results creates or activates a user account with associated DID.
+   > An agent needs no re-login to switch a role. Role functions are separated on UX/UI level.
+2. As an Issuer, the agent can `issue a VC` of a type of choice to a Holder, by specifying the Holder's DID 
+and other data, according to [VC Claims Specification](#vc-claim-specifications) of the VC type.
+   > - VC issuance requests from Holder to Issuer is a subject for further developments and is not implemented for the Stage 4.
+   > - In future versions, Issuers will have to explicitly declare a list of VC types they serve. Current implementation is free from this restriction.
+   > The "Issuer - VC type list" associations must be available at a VCBP Registry.
+   > - Potentially, there can be many Issuers to sign a single VC. Support for such scenarios with even more complex trust chaining is also envisioned.  
+3. Once issued, the VC instance delivered to the `Holder to possess` and can be found at his/her wallet.
+4. For VCs at Holder's disposal, he/she can `request verification` by choosing a provided verifier service and sending a message.
+   > Currently, ony one agent is declared to be a verifier (find "FlatQube"). For the protocol to work, verifiers have to publish their 
+   > wanted VC type lists the same way as Issuers do. VCBP Registry for these purposes will be implemented in future versions.
+5. The chosen verifier receives the request in their inbox list and can review the VC data sent
+and `Approve` or `Reject` the verification. Cryptographic operations, required to ensure integrity of credentials 
+and certificate chains are performed automatically. A secret code(s) that allows Verifier to access the information
+is sent as a part of this interaction.
+   > Some scenarios may require more complex interactions between Issuer and Holder for issuance 
+   > and between Holder and Verifier. These may include sharing symmetric RSA keys, HMAC secrets, nonces etc, 
+   > and also a few-round communication between signers, like in Schnorr' scheme. All those peculiarities must be
+   > hidden from user under the hood of VC Brokerage Protocol implementation. Secrecy, required for the certain data,
+   > must be provided by agent's Encrypted Data Vault and VC Broker, so no sensitive data will ever leave the agent's
+   > process boundary and EDV storage area.
 
 ## VC Claim Specifications
+The
+
 
 ### Scheme as a contract
 
@@ -64,3 +82,6 @@ The Verified Credential Scheme is a contract that fixes
 ## VC representation
 
 ## VC anchoring
+
+## Notes on cryptography
+Ed25519 -> schorr, ZKP
