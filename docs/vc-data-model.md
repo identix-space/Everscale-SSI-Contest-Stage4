@@ -4,20 +4,20 @@
 A Verifiable Credential is an entity, which [VC brokerage](vc-brokerage-overview.md) is circling around.
 Identix team's view on this concept is coherent with [the common W3C doctrine](https://www.w3.org/TR/vc-data-model/).
 The actual VC lifecycle design and implementation add certain specifics, but strive to comply to other
-mature (like [JWT](https://datatracker.ietf.org/doc/html/rfc7519), [DIDs](https://www.w3.org/TR/did-core/)) or 
-emerging (like [EDV](https://digitalbazaar.github.io/encrypted-data-vaults/)) 
-Web standards, and to reuse approaches we see advantageous (like anchoring 
-from [DIF SideTree](https://identity.foundation/sidetree/spec/) or 
+mature (like [JWT](https://datatracker.ietf.org/doc/html/rfc7519), [DIDs](https://www.w3.org/TR/did-core/)) or
+emerging (like [EDV](https://digitalbazaar.github.io/encrypted-data-vaults/))
+Web standards, and to reuse approaches we see advantageous (like anchoring
+from [DIF SideTree](https://identity.foundation/sidetree/spec/) or
 anoncreds from [Hyperledger Aries](https://github.com/hyperledger/indy-hipe/tree/main/text/0109-anoncreds-protocol)).
 
-This document doesn't explain the Identix concept in all details, but rather focuses on the design 
-for the [Everscale Contest Stage 4](https://forum.freeton.org/t/freeton-self-sovereign-identity-framework-stage-4/12415) 
+This document doesn't explain the Identix concept in all details, but rather focuses on the design
+for the [Everscale Contest Stage 4](https://forum.freeton.org/t/freeton-self-sovereign-identity-framework-stage-4/12415)
 implementation, accompanying by a few indications of the planned future developments.
 
 ## The target trust scenarios
-The target scenarios are based on the VC Brokerage Protocol's 
+The target scenarios are based on the VC Brokerage Protocol's
 [agency model](vc-brokerage-overview.md#vcbp-agency-model-and-dids). From all multitude and variability of
-digital trust relationships the Stage 4 implementation covers the following, as specified in contest's 
+digital trust relationships the Stage 4 implementation covers the following, as specified in contest's
 [hard criteria](https://forum.freeton.org/t/freeton-self-sovereign-identity-framework-stage-4/12415#hard-criteria-7):
 
 >1. The Issuer issues Verifiable Credentials with assertions about the subject.
@@ -28,10 +28,10 @@ digital trust relationships the Stage 4 implementation covers the following, as 
 >   3. VC is authentic (cryptographically certified by the Issuer)
 
 According to this requirement, the Stage 4 solution realizes the following procedures:
-1. An Agent signs in to Identix.PASS and can act impersonating any of normative roles: 
+1. An Agent signs in to Identix.PASS and can act impersonating any of normative roles:
 Holder, Issuer, Verifier. Successful sign in attempt results creates or activates a user account with associated DID.
    > An agent needs no re-login to switch a role. Role functions are separated on UX/UI level.
-2. As an Issuer, the agent can `issue a VC` of a type of choice to a Holder, by specifying the Holder's DID 
+2. As an Issuer, the agent can `issue a VC` of a type of choice to a Holder, by specifying the Holder's DID
 and other data, according to [VC Claims Specification](#vc-claim-specifications) of the VC type.
    > - VC issuance requests from Holder to Issuer is a subject for further developments and is not implemented for the Stage 4.
    > - In future versions, Issuers will have to explicitly declare a list of VC types they serve. Current implementation is free from this restriction.
@@ -45,25 +45,25 @@ and other data, according to [VC Claims Specification](#vc-claim-specifications)
 and `Approve` or `Reject` the verification. Cryptographic operations, required to ensure integrity of credentials 
 and certificate chains are performed automatically. A secret code(s) that allows Verifier to access the information
 is sent as a part of this interaction.
-   > Some scenarios may require more complex interactions between Issuer and Holder for issuance 
-   > and between Holder and Verifier. These may include sharing symmetric RSA keys, HMAC secrets, nonces etc, 
+   > Some scenarios may require more complex interactions between Issuer and Holder for issuance
+   > and between Holder and Verifier. These may include sharing symmetric RSA keys, HMAC secrets, nonces etc,
    > and also a few-round communication between signers, like in Schnorr' scheme. All those peculiarities must be
    > hidden from user under the hood of VC Brokerage Protocol implementation. Secrecy, required for the certain data,
    > must be provided by agent's Encrypted Data Vault and VC Broker, so no sensitive data will ever leave the agent's
    > process boundary and EDV storage area.
 
 ## VC Claims Specification
-In order to make a digital trust transaction to happen, a set of contracts between actors and between VCPB brokers 
-must be established: semantical, syntactical, procedural. VC Brokerage Protocol 
-[specifies](vc-brokerage-overview.md#vc-brokerage-protocol) this set of high-level contracts, 
+In order to make a digital trust transaction to happen, a set of contracts between actors and between VCPB brokers
+must be established: semantical, syntactical, procedural. VC Brokerage Protocol
+[specifies](vc-brokerage-overview.md#vc-brokerage-protocol) this set of high-level contracts,
 and represents itself a *metacontract* in this respect.
 
-The contracts must ensure all parties understand each other, meaning all trust procedures are coherent 
+The contracts must ensure all parties understand each other, meaning all trust procedures are coherent
 in an expected order of execution and in terms of their input and output artifacts.
 
-Contracting the protocol communication around Verifiable Credentials needs to address several layers 
-of representation and interpretation. 
-Fortunately, most of them are already addressed by the community, but there are [debatable] reasons 
+Contracting the protocol communication around Verifiable Credentials needs to address several layers
+of representation and interpretation.
+Fortunately, most of them are already addressed by the community, but there are [debatable] reasons
 for VCBP trust architects to make additional efforts in order to introduce certain novelty. 
 
 1. **Representation layer** contract specifies how VC's body is stored and transmitted over the wire. Since the format 
