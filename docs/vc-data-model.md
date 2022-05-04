@@ -148,6 +148,8 @@ like the one here: [https://schemas.identix.space/examples/vccs/stateid](https:/
 8. All the JSON schemas themselves are constructed according to JSON metaschema [http://json-schema.org/draft/2020-12/schema](http://json-schema.org/draft/2020-12/schema),
 so the definitions can be validated by any [JSON Schema validator](http://json-schema.org/implementations.html#validators).
 
+![metaschematic](metaschemas.png)
+
 > The Stage 4 schema repository contains a Python 3 validator script that does the validation of the whole set of schemas
 > See here [https://github.com/identix-space/schemas](https://github.com/identix-space/schemas)
 
