@@ -82,8 +82,8 @@ and overall solution complexity. Particularly for the VC context, there are issu
 zero knowledge proofs and partial disclosure concerns, which e.g. motivated Hyperledger team to elaborate on
 a specific binary format for representing claims: [anoncreds](https://github.com/hyperledger/indy-hipe/tree/main/text/0109-anoncreds-protocol).
 <br>The presented Stage 4 solution introduces a hybrid approach, which allows simple claims, represented as
-[RDF triples](https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple) to be compacted in a set of
-binary attributes, similar to those from anoncreds. This form gives more freedom to use advanced cryptographic approaches,
+[RDF triples](https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple) to be compacted in a set of binary attributes,
+similar to those from anoncreds. This form gives more freedom to use advanced cryptographic approaches,
 elevate privacy, and significantly reduce VC anchor size, what may be advantageous for reasons of reducing storage costs
 in Everscale. 
 
@@ -106,16 +106,59 @@ W3C Recommendation makes the symmetric conceptual differentiation, partially for
 A verifiable credential instance thus become an atomic **artifact of trust transaction**, and provides common
 trust context (e.g. certificate chain) for the members.  
 
-VCCS requires claims to be expressed as `Subject-Predicate-Object` RDF triplet.
+The [JSON Schema]() for the VC Claim Specification
+
+## VC composition and VCCS protocol
+1. Claim is expressed as `Subject-Predicate-Object` RDF triplet.
+   1. `Subject` is always a DID of VC's subject.
+      > It is possible to `reify` a claim in the LD-like manner in the future VCCS version by assigning an identity
+      > to them to get an RDF graph and allow OWL-like reasoning. However, this adds extra complexity and known problems,
+      > not all of which have good solutions.
+   2. `Predicate` is a DID of a shared predicate. A predicate definition may impose requirements on associated `Object`
+   3. `Object` is an arbitrary value. Only simple values are currently allowed.
+2. Claim group is expressed as named set of claims and has a signature of a hash of its JSON representation,
+that certifies integrity and authenticity. The name of a claim group must correspond to a DID of a claim group specification.
+3. VC instance is expressed as a set of claim groups accompanied by common procedural properties (like date and place of issuance),
+and common security parameters.
+4. A VCCS must be defined and published in a shared registry.
+5. A VCCS is a named (DID) set of named claim group specifications.
+6. A claim group specification is a set of predicate DIDs.
+7. Predicates must be defined and published in a shared registry as individual nodes.
+8. Predicates definition must contain
+   1. unique DID;
+   2. human-readable name;
+   3. optional set of object type restrictions.
+9. VCCS and predicate definitions are JSON files, constructed according to normative schemas.
+
+## Validation of the structure 
+
+See an example JWT [https://schemas.identix.space/examples/vc/basic_kyc](https://schemas.identix.space/examples/vc/basic_kyc)
+
+1. Root JWT representation is constructed according to the JSON schema `vc_jwt_v1` [https://schemas.identix.space/vc/vc_jwt_v1](https://schemas.identix.space/vc/vc_jwt_v1)
+   > - The presented structure of JWT follows the recommendation of [RFC7519](https://www.rfc-editor.org/rfc/rfc7519)
+2. `vc` node inside `payload` node of the JWT structure is an extension node, according to recommendations of W3C
+[VC DM](https://www.w3.org/TR/vc-data-model/#json-web-token-extensions)
+3. `credentialSubject` node of the `vc` node is that contains an array of `claim_groups`.
+This array represents the key VC content: a set of claims.  
+4. Schema for these claim groups, according to which a VC is constructed, is defined as a VC Claims Specification,
+like the one here: [https://schemas.identix.space/examples/vccs/stateid](https://schemas.identix.space/examples/vccs/stateid) 
+5. Such VCCS definitions are JSON representations, constructed according to the JSON Schema [https://schemas.identix.space/meta/vccs](https://schemas.identix.space/meta/vccs)
+6. Such VCCS definitions use predicate specifications, like `has_first_name` [https://schemas.identix.space/core/has_first_name](https://schemas.identix.space/core/has_first_name)
+7. Such predicate definitions are JSON representations, constructed to according the JSON Schema [https://schemas.identix.space/meta/predicate](https://schemas.identix.space/meta/predicate)
+8. All the JSON schemas themselves are constructed according to JSON metaschema [http://json-schema.org/draft/2020-12/schema](http://json-schema.org/draft/2020-12/schema),
+so the definitions can be validated by any [JSON Schema validator](http://json-schema.org/implementations.html#validators).
+
+> The Stage 4 schema repository contains a Python 3 validator script that does the validation of the whole set of schemas
+> See here [https://github.com/identix-space/schemas](https://github.com/identix-space/schemas)
+
 > Example<br>
 > Let the DID `did:ever:123` was acquired by a respected individual we know as Pete Petrov. Then the triplet<br>
 > `"did:ever:123" “has_first_name” “Pete”`<br>
 > specifies (the claim syntax) that such association exists somewhere, and that certified by a trusted agent - issuer.<br>
 > `"did:ever:123" “has_last_name” “Petrov”`<br>
-> gives us another valuable claim, which combined may form a group "names" for a Government ID verifiable credential. 
+> gives us another valuable claim, which combined may form a group "names" for a Government ID verifiable credential.
 > Corresponding VC Claim Specification (name it `StateID`), which includes a requirement like `["has_first_name", "has_first_name"]`
 requires all VCs, which declare compliance with this specification to have claims with the indicated predicates.
-
 
 ### Lifecycle of VC Claim Specification
 | Practice name | Description |
