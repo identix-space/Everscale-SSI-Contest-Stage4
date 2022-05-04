@@ -19,6 +19,7 @@ a number of internal services and components, and rely on Everscale as a backbon
 
 ![Identix solution architecture for Stage 4](idx-ecosystem-stage4.png)
 
+### Identix SSO and custodial wallets
 Identix Single Sign-On is a service that allows both Web2 and Web3 users become parties of 
 decentralized trust relationships and participants of trust transactions using [DIDs](https://www.w3.org/TR/did-core/).
 Google, Facebook, Twitter users may utilize their corresponding Web2 accounts to create a *custodial wallet* via 
@@ -33,3 +34,25 @@ will appear, control transfer of these DIDs to non-custodial wallets will be pos
 Identix SSO also allows registered third-party applications to use the single sign-on functionality to bring their 
 user audience into the world of decentralized trust. 
 
+### Anchoring system for the DID management
+The Stage 4 solution implements the two anchoring systems. The DID anchoring system is an evolution of 
+DID management system we previously created at Stage 3. Everscale blockchain is used to fix DID document anchors and 
+the developed `did:ever` [method]() is used to construct DIDs.
+
+The DID anchoring subsystem is designed with the two smart contracts:
+1. The DID fabric and controller: `IdxDidRegistry` [(code)]()
+2. The DID document anchor: `IdxDidDocument` [(code)]()
+
+> For the Stage 4, the main purpose of `IdxDidDocument` is to bind a user DID with a user public key. 
+Further development may include extensions to that by adding e.g. capability or delegation relationships,
+as per [DID Core §5.3.4](https://www.w3.org/TR/did-core/#capability-invocation). 
+
+### Identix PASS
+Identix PASS is a service that provides users access to operations with VC. Identix PASS backend implements 
+VC Agent and VC broker functionality, while Identix PASS frontend application impersonates users via Identix SSO
+to bind VC agents and VC brokers to a user identity, and provides necessary UI.
+
+`Identix Wallets` service is an infrastructure service that stores custodial wallets.
+
+For an end user, Identix PASS interface is a central point of contact and the tool for accessing 
+decentralized trust capabilities Identix offers; VC management is the first to mention.
