@@ -30,7 +30,7 @@ Thus, a protocol of trust between the parties is not affected by variability of 
 (e.g. changes in communication channels or storage media).
 
 A network of **VC brokers** encapsulates a part of specific trust communication and realizes a certain 
-brokerage protocol. **VC Brokerage Protocol**
+brokerage protocol. **VC Brokerage Protocol** 
 - enables trust between parties by regulating a *lifecycle of shared Verifiable Credentials*;
 - defines a set of interactions between brokers: *broker to broker interface*;
 - defines a set of interactions between a broker and an agent it serves: *agent to broker interface*;

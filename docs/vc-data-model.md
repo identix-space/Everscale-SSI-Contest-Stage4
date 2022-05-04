@@ -52,33 +52,84 @@ is sent as a part of this interaction.
    > must be provided by agent's Encrypted Data Vault and VC Broker, so no sensitive data will ever leave the agent's
    > process boundary and EDV storage area.
 
-## VC Claim Specifications
-The
+## VC Claims Specification
+In order to make a digital trust transaction to happen, a set of contracts between actors and between VCPB brokers 
+must be established: semantical, syntactical, procedural. VC Brokerage Protocol 
+[specifies](vc-brokerage-overview.md#vc-brokerage-protocol) this set of high-level contracts, 
+and represents itself a *metacontract* in this respect.
 
+The contracts must ensure all parties understand each other, meaning all trust procedures are coherent 
+in an expected order of execution and in terms of their input and output artifacts.
+
+Contracting the protocol communication around Verifiable Credentials needs to address several layers 
+of representation and interpretation. 
+Fortunately, most of them are already addressed by the community, but there are [debatable] reasons 
+for VCBP trust architects to make additional efforts in order to introduce certain novelty. 
+
+1. **Representation layer** contract specifies how VC's body is stored and transmitted over the wire. Since the format 
+may affect data integrity, it must be regulated to a reasonable extent. We chose JSON Web Token as 
+a final destination of VC composition (see [VC Representation](#vc-representation) for the schema), 
+plus an Everscale smart contract for VC anchoring (see [VC anchoring](#vc-anchoring)).
+2. **VC syntax layer** contract regulates how the transmitted object is interpreted to be a Verifiable Credential 
+having its specific properties. We chose the Verifiable Credentials Data Model W3C Recommendation 
+[v1.1](https://www.w3.org/TR/vc-data-model/) over JSON as the VC syntax standard.
+3. **Claim syntax layer** contract specifies how a semantic identity of a *claim*, 
+shared in a [semantic community](https://semanticcommunity.org/SemanticCommunity.aspx), is represented to have 
+the same meaning for all parties of trust relationships. W3C standards tend to reuse one of the most elaborated syntaxes
+to represent domain semantics: [JSON for Linked Data](https://w3c.github.io/json-ld-syntax/). It definitely makes sense
+in the long run, but this approach has a [number of drawbacks]() in terms of cognitive load, performance, total cost 
+and overall solution complexity. Particularly for the VC context, there are issues related to 
+zero knowledge proofs and partial disclosure concerns, which e.g. motivated Hyperledger team to elaborate on 
+a specific binary format for representing claims: [anoncreds](https://github.com/hyperledger/indy-hipe/tree/main/text/0109-anoncreds-protocol).
+<br>The presented Stage 4 solution introduces a hybrid approach, which allows simple claims, represented as
+[RDF triples](https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-triple) to be compacted in a set of
+binary attributes, similar to those from anoncreds. This form gives more freedom to use advanced cryptographic approaches,
+elevate privacy, and significantly reduce VC anchor size, what may be advantageous for reasons of reducing storage costs
+in Everscale. 
 
 ### Scheme as a contract
 
-The Verified Credential Scheme is a contract that fixes
+The Verified Credential Claims Specification is a scheme, which contracts
 
-1. Syntactic requirements for the representation of semantics (template) needed to express statements that define some specific trust protocol.
-   > Example: the association of a name with an identifier is implemented through the syntax of the SPO triplet
-   "did:ever:123" “has_name” “Pete Petrov”
-   Scheme
-   NameVC: [”has name”]
-   requires all VC declaring compliance with the Namevk schema to have statements with the predicate has name.
-   The credibility of this scheme further extends to the credibility of the practice of identifying the “name” of the DID agent in the relevant practices.
+1. Syntax to express a `claim`.
+<br>Each claim thus become an atomic **artifact of shared meaning**.
+2. Syntax to express a `group of claims`.
+<br>Assumed, that for the most of practical cases, a *set* of semantically bound atomic claims is required to express a
+fact, valuable for a trust transaction.
+<br>Each claim group thus become an atomic **artifact of shared data**. E.g. first name, middle name and last name
+may be considered semantically different, but can be meaningfully shared only as group to address a subject individual
+in the respect of own names. Maybe more important, this will allow certain flexibility for partial disclosure and storage optimization. 
 
-### Practices of LC VC schemes
-| 1 | 2|
+W3C Recommendation makes the symmetric conceptual differentiation, partially for the sake of mereology:
+*"A credential is a set of one or more claims made by the same entity."* [VC DM §3.2](https://www.w3.org/TR/vc-data-model/#credentials)
+<br>The aggregation hierarchy, proposed here, `VC -> ClaimGroup -> Claim` does more to that. 
+A verifiable credential instance thus become an atomic **artifact of trust transaction**, and provides common
+trust context (e.g. certificate chain) for the members.  
+
+VCCS requires claims to be expressed as `Subject-Predicate-Object` RDF triplet.
+> Example<br>
+> Let the DID `did:ever:123` was acquired by a respected individual we know as Pete Petrov. Then the triplet<br>
+> `"did:ever:123" “has_first_name” “Pete”`<br>
+> specifies (the claim syntax) that such association exists somewhere, and that certified by a trusted agent - issuer.<br>
+> `"did:ever:123" “has_last_name” “Petrov”`<br>
+> gives us another valuable claim, which combined may form a group "names" for a Government ID verifiable credential. 
+> Corresponding VC Claim Specification (name it `StateID`), which includes a requirement like `["has_first_name", "has_first_name"]`
+requires all VCs, which declare compliance with this specification to have claims with the indicated predicates.
+
+
+### Lifecycle of VC Claim Specification
+| Practice name | Description |
 | --- | --- |
-| Schema design | The VC schema is constructed as a named group of requirements for the presence of statements in a VC instance.The requirements for the presence of statements are constructed as a named ordered group of 3 elements, in accordance with the SubjectReq PredicateReq ObjectReq RDF syntax |
-| Schema validation | The constructed circuit must be validated by a public circuit registrar |
-| Schema publication | A valid schema is published by the registrar as an artifact available for receipt in accordance with the URN (DID). |
-| Constructing a certificate request | A certificate request (to the Issuer) can be constructed as a reference to a VC scheme, according to which it is required to provide a VC instance |
-| Constructing a VC instance | Constructing a VC instance consists of constructing elementary statements and grouping them according to the selected scheme, and creating all the necessary certificates for this group |
-| Validation of the VC instance | Validation of the VC instance - checking the presence of all statements in the submitted group of elementary statements in accordance with the declared scheme |
-| VC instance verification | VC instance verification - verification of the entire group of certificates associated with the submitted group of statements for compliance with the requirements of the trust protocol (correctness of the cryptographic signature, expiration, etc.) |
-| Revocation of the scheme | Formal revocation of the scheme is not expected. The actual decommissioning of the scheme (for example, as a result of a failure of the registrar's service) only means the absence of a public contract. This does not imply the termination of trust practices between counterparties, but only limits, complicates or reduces the level of trust in practices, which remains at the discretion of the counterparties. |
+| Designing a specification | A VCCS is constructed as a named group of requirements for the presence of predicates in a VC instance. The requirements for the presence of statements are constructed as a named ordered group of 3 elements, in accordance with the `Subject Predicate Object` RDF syntax |
+| Validating a specification | The constructed specification must be validated by a public VCCS registrar |
+| Publishing a specification | A valid specification is published by the registrar as an artifact, available for retrieval by VCCS instance' URN (DID). |
+| Constructing a VC request | A VC request (to the Issuer) must include a reference to a VCCS, according to which involved parties have to provide data to construct a set of claims for a VC instance |
+| Constructing a VC instance | Constructing a VC instance consists of constructing unit claims and grouping them according to the selected scheme, and creating all the necessary certificates for this group |
+| Validating a VC instance | Validation of the VC instance means checking presence of all claim groups and claims in a submitted VC in accordance with the specified VCCS |
+| Verifying a VC instance | Checking that the entire group of certificates associated with each group of claims comply with requirements of required trust protocol (cryptographic signature, expiration date, etc.) |
+| Revocation of a specification | Formal revocation of a VCCS is not expected. The actual decommissioning of a VCCS instance (for example, as a result of a failure of the registrar's service) only means the absence of a public contract. This does not imply the termination of trust relationships between counterparties, but only limits, complicates or reduces the level of trust in them, which remains at the discretion of the counterparties. |
+
+
 ## VC representation
 
 ## VC anchoring
