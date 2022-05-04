@@ -60,7 +60,7 @@ verified, disposed etc upon a communication network.
 
 A concrete subset of the operations forms 
 a *role* of an agent. The minimal set of agent roles, required for a protocol to work, is called 
-['triangle of trust'](https://www.evernym.com/blog/gentle-introduction-verifiable-credentials/):
+['Triangle of Trust'](https://www.evernym.com/blog/gentle-introduction-verifiable-credentials/):
 - Issuer: creates a VC instance, signs the instance in most scenarios;
 - Verifier: verifies a VC instance for a purpose, e.g. authorization;
 - Holder: manages VC instances.

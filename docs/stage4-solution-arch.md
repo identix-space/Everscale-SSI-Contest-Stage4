@@ -49,7 +49,7 @@ as per [DID Core §5.3.4](https://www.w3.org/TR/did-core/#capability-invocation)
 
 ### Anchoring system for the VC management
 VC anchoring in a blockchain is supposed to address requirements of non-repudiability and unforgeability 
-in the first place, but known issues with privacy, unlinkability, and trust/certificate chaining may arise, 
+in the first place, but known issues with privacy, unlinkability and trust/certificate chaining may arise, 
 which can lead to certain trade-offs.
 Generally, VCBP doesn't require any anchoring or any specific anchoring to function, leaving room 
 for different configurations. The specialized implementation of VC brokerage protocol, 
@@ -62,7 +62,7 @@ the user profile/data vault. For custodial accounts of Stage 4, the Identix Wall
 <br/>`#Unforgeability`
 3. VC contains a set of [claims](https://www.w3.org/TR/vc-data-model/#claims) about a subject or subjects, 
 organized in claim groups, according to VC Claim Specification (see [Stage 4 VC Data Model](vc-data-model.md)). 
-Each claim group is treated as a unit of trust, and issued, signed, presented, and verified as a whole. 
+Each claim group is treated as a unit of trust, and issued, signed, presented and verified as a whole. 
 This allows a user to get a VC from the issuer(s) in a single transaction while disclosing claims partially.
 <br/>`#Privacy`, `#Unlinkability`, `#Unforgeability`
 4. Anchor smart contract, uniquely associated with a VC instance, only stores a secured HMAC hash and a signature 
