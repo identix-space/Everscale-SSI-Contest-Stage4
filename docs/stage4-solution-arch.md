@@ -77,7 +77,7 @@ otherwise.
 ### Identix PASS
 Identix.PASS is a service that provides users access to operations with VC. Identix.PASS backend implements 
 VC Agent and VC broker functionality, while Identix.PASS frontend application impersonates users via Identix.SSO
-to bind VC agents and VC brokers to a user identity, and provide necessary UI.
+to bind VC agents and VC brokers to a user identity, and provides necessary UI.
 
 Identix.Wallets service is an infrastructure service that stores custodial wallets. It is not intended for public use.
 
