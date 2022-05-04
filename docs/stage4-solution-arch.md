@@ -31,7 +31,7 @@ fully functional [VcWallet](vc-brokerage-overview.md#vcwallet) currently in the 
 Identix keeps a key pair and operates in VCBP on behalf of a user. In the future, when the VcWallet implementation
 will appear, control transfer of these DIDs to non-custodial wallets will be possible. 
 
-Identix SSO also allows registered third-party applications to use the single sign-on functionality to bring their 
+Identix.SSO also allows registered third-party applications to use the single sign-on functionality to bring their 
 user audience into the world of decentralized trust. 
 
 ### Anchoring system for the DID management
@@ -47,12 +47,46 @@ The DID anchoring subsystem is designed with the two smart contracts:
 Further development may include extensions to that by adding e.g. capability or delegation relationships,
 as per [DID Core §5.3.4](https://www.w3.org/TR/did-core/#capability-invocation). 
 
+### Anchoring system for the VC management
+VC anchoring in a blockchain is supposed to address requirements of non-repudiability and unforgeability 
+in the first place, but known issues with privacy, unlinkability and trust/certificate chaining may arise, 
+which can lead to certain trade-offs.
+Generally, VCBP doesn't require any anchoring or any specific anchoring to function, leaving room 
+for different configurations. The specialized implementation of VC brokerage protocol, 
+which is implemented by Identix for the Stage 4, does contain anchoring system for VCs being managed. 
+
+1. Body of a VC instance is considered private information and is not supposed for public disclosure.
+<br/>`#Privacy`
+2. VC is stored as a standard, signed [JWT](https://datatracker.ietf.org/doc/html/rfc7519), and kept as a part of
+user profile/data vault. For custodial accounts of Stage 4, Identix Wallets service realizes this the storage function.
+<br/>`#Unforgeability`
+3. VC contains a set of [claims](https://www.w3.org/TR/vc-data-model/#claims) about a subject or subjects, 
+organized in claim groups, according to VC Claim Specification (see [Stage 4 VC Data Model](vc-data-model.md)). 
+Each claim group is treated as a unit of trust, and issued, signed, presented and verified as a whole. 
+This allows user to get a VC from issuer(s) in a single transaction, while disclose claims partially.
+<br/>`#Privacy`, `#Unlinkability`, `#Unforgeability`
+4. Anchor smart contract, uniquely associated with a VC instance, only stores a secured HMAC hash and a signature 
+of each claim group of the VC. Nothing from these data items can provide information on the semantics of claims,
+types of claims, VC subject or holder.
+<br/>`#Unlinkability`, `#Unforgeability`
+5. VC anchor stores an issuer's public key, which is considered public information. This design, however, 
+doesn't hamper other implementation schemes, when a public key may be encrypted, generated for one-time use or secured
+otherwise.
+<br/>`#Trust Chaining`
+
 ### Identix PASS
-Identix PASS is a service that provides users access to operations with VC. Identix PASS backend implements 
-VC Agent and VC broker functionality, while Identix PASS frontend application impersonates users via Identix SSO
+Identix.PASS is a service that provides users access to operations with VC. Identix.PASS backend implements 
+VC Agent and VC broker functionality, while Identix PASS frontend application impersonates users via Identix.SSO
 to bind VC agents and VC brokers to a user identity, and provides necessary UI.
 
-`Identix Wallets` service is an infrastructure service that stores custodial wallets.
+Identix.Wallets service is an infrastructure service that stores custodial wallets. It is not intended for public use.
 
-For an end user, Identix PASS interface is a central point of contact and the tool for accessing 
+For an end user, Identix.PASS interface is a central point of contact and the tool for accessing 
 decentralized trust capabilities Identix offers; VC management is the first to mention.
+
+# Future directions
+The proposed Stage 4 solution both in architectural design and service implementation perspectives is a prototype
+of an envisioned Identix SSI ecosystem. We see a range of directions and dimensions of evolution aimed to address
+the raising demand in the sphere of digital trust and decentralized identity. 
+One of the major future undertakings is to make Verifiable Credential Brokerage Protocol a flexible public standard 
+of building digital trust relationships and operations, and to support it with capable ecosystem of public services.
