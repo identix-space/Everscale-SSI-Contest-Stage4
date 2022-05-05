@@ -12,7 +12,7 @@
 
 # Introduction
 
-We are building SSI infratructure for the Everscale blockchain network. This repo represents our technical stack according to [Everscale SSI Stage 4 contest](https://forum.freeton.org/t/freeton-self-sovereign-identity-framework-stage-4/12415).
+We are building SSI infrastructure for the Everscale blockchain network. This repo represents our technical stack according to the [Everscale SSI Stage 4 contest](https://forum.freeton.org/t/freeton-self-sovereign-identity-framework-stage-4/12415).
 
 Working prototype: [pass.identix.space](https://pass.identix.space/)
 
@@ -28,7 +28,7 @@ The trust triangle, which is the core of the SSI ecosystem, presumes that **the 
 
 ## What is a Decentralized Identifier
 
-A decentralizd identifier (DID) is a globally unique persistent identifier that does not require a centralized registration authority and enables verifiable, decentralized digital identity ([W3C](https://www.w3.org/TR/did-core)). Instead of being stored in a proprietary registry of a a specific software solution, such an identifier is usually anchored in blockchain. The DID Document associated with such a DID can be used to store cryptographic materials and other relevant data, which allows DID Holder to login with his private key and act as an agent in VC exchange.
+A decentralized identifier (DID) is a globally unique persistent identifier that does not require a centralized registration authority and enables verifiable, decentralized digital identity ([W3C](https://www.w3.org/TR/did-core)). Instead of being stored in a proprietary registry of a specific software solution, such an identifier is usually anchored in blockchain. The DID Document associated with such a DID can be used to store cryptographic materials and other relevant data, which allows the DID Holder to login with his private key and act as an agent in VC exchange.
 
 ## What is a Verifiable Credential
 
@@ -39,7 +39,7 @@ A verifiable credential is a tamper-evident container for authentic data that ca
 
 ## Solution architecture
 
-[Here](docs/stage4-solution-arch.md) you can read about the architecure of services and major components of Everscale SSI stack.
+[Here](docs/stage4-solution-arch.md) you can read about the architecture of services and major components of the Everscale SSI stack.
 
 ## VC Brokerage protocol
 [Here](docs/vc-brokerage-overview.md) you can read about the concept of brokerage of verifiable credentials and get acquainted with current protocol implementation.
