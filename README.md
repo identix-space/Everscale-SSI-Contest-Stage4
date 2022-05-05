@@ -28,7 +28,7 @@ The trust triangle, which is the core of the SSI ecosystem, presumes that **the 
 
 ## What is a Decentralized Identifier
 
-A decentralized identifier (DID) is a globally unique persistent identifier that does not require a centralized registration authority and enables verifiable, decentralized digital identity ([W3C](https://www.w3.org/TR/did-core)). Instead of being stored in a proprietary registry of a specific software solution, such an identifier is usually anchored in blockchain. The DID Document associated with such a DID can be used to store cryptographic materials and other relevant data, which allows the DID Holder to login with his private key and act as an agent in VC exchange.
+A decentralized identifier (DID) is a globally unique persistent identifier that does not require a centralized registration authority and enables a verifiable and decentralized digital identity ([W3C](https://www.w3.org/TR/did-core)). Instead of being stored in a proprietary registry of a specific software solution, such an identifier is usually anchored in a blockchain. The DID Document associated with such a DID can be used to store cryptographic materials and other relevant data, which allows the DID Holder to log in with his private key and act as an agent in VC exchange.
 
 ## What is a Verifiable Credential
 
