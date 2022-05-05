@@ -1,3 +1,5 @@
+# Everscale Self-Sovereign Identity Framework (Stage 4)
+
 * [Introduction](#introduction)
    * [What is SSI](#what-is-ssi)
    * [What is a Decentralized Identifier](#what-is-a-decentralized-identifier)
@@ -37,15 +39,21 @@ A verifiable credential is a tamper-evident container for authentic data that ca
 
 ## Solution architecture
 
-Read more here
+[Here](docs/stage4-solution-arch.md) you can read about the architecure of services and major components of Everscale SSI stack.
 
 ## VC Brokerage protocol
-
-Read more here
+[Here](docs/vc-brokerage-overview.md) you can read about the concept of brokerage of verifiable credentials and get acquainted with current protocol implementation.
 
 ## VC Data Model
-
-Read more here
-
+Read about VC data model, VC Lifecycle and VC Claims Specification protocol [here](docs/vc-data-model.md)
 
 # Public repositories
+[identix-pass-service](https://github.com/identix-space/identix-pass-service) - 
+
+[identix-pass-service-ui](https://github.com/identix-space/identix-pass-service-ui) - 
+
+[identix-wallets](https://github.com/identix-space/identix-wallets) - 
+
+[identix-sso-service](https://github.com/identix-space/identix-sso-service) - 
+
+[identix-sso-ui](https://github.com/identix-space/identix-sso-ui) -
