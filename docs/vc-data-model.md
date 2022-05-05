@@ -104,9 +104,7 @@ W3C Recommendation makes the symmetric conceptual differentiation, partially for
 *"A credential is a set of one or more claims made by the same entity."* [VC DM §3.2](https://www.w3.org/TR/vc-data-model/#credentials)
 <br>The aggregation hierarchy, proposed here, `VC -> ClaimGroup -> Claim` does more to that. 
 A verifiable credential instance thus become an atomic **artifact of trust transaction**, and provides common
-trust context (e.g. certificate chain) for the members.  
-
-The [JSON Schema]() for the VC Claim Specification
+trust context (e.g. certificate chain) for the members.
 
 ## VC composition and VCCS protocol
 1. Claim is expressed as `Subject-Predicate-Object` RDF triplet.
