@@ -48,12 +48,8 @@ A verifiable credential is a tamper-evident container for authentic data that ca
 Read about VC data model, VC Lifecycle and VC Claims Specification protocol [here](docs/vc-data-model.md)
 
 # Public repositories
-[identix-pass-service](https://github.com/identix-space/identix-pass-service) - 
+[identix-pass-service](https://github.com/identix-space/identix-pass-service), [identix-pass-service-ui](https://github.com/identix-space/identix-pass-service-ui) - Identix.PASS web app (prototype)
 
-[identix-pass-service-ui](https://github.com/identix-space/identix-pass-service-ui) - 
+[identix-wallets](https://github.com/identix-space/identix-wallets) - custodial SSI wallets to control DIDs/VCs
 
-[identix-wallets](https://github.com/identix-space/identix-wallets) - 
-
-[identix-sso-service](https://github.com/identix-space/identix-sso-service) - 
-
-[identix-sso-ui](https://github.com/identix-space/identix-sso-ui) -
+[identix-sso-service](https://github.com/identix-space/identix-sso-service), [identix-sso-ui](https://github.com/identix-space/identix-sso-ui) - Single Sign-On solution using identix-wallets
