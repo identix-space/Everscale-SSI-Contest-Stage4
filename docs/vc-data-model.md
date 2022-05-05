@@ -173,7 +173,50 @@ requires all VCs, which declare compliance with this specification to have claim
 | Revocation of a specification | Formal revocation of a VCCS is not expected. The actual decommissioning of a VCCS instance (for example, as a result of a failure of the registrar's service) only means the absence of a public contract. This does not imply the termination of trust relationships between counterparties, but only limits, complicates or reduces the level of trust in them, which remains at the discretion of the counterparties. |
 
 ## VC anchoring
+### Oncnain anchors motivation and design goals
+#### 1. Ensure non-repudiability
+Issuing party cannot deny a specific VC was issued.
+Smart contract data submitted to blockchain network cannot be deleted by any party.
+The single exception is Everscale storage payment policy, according to which a deployed smart contract consumes
+some amount of gas on as a storage fee for validators, and as soon as account's balance goes below zero,
+the account gets 'frozen' and its data get replaced by its hash. This behaviour may be interpreted as a VC expiration,
+or as *VC anchor* expiration, so becomes a part of a business model.
 
+#### 2. Ensure a well-known place for VC proofs, decentralized and open for public audit
+A public blockchain becomes a well-known source of specific evidences and a trusted resolver
+of trust-related identifiers (like DID). All parties don't need to rely on web services with code,
+hidden on private servers, and/or on its functional logic with uncontrolled variables,
+at least for some of critical segments in a trust chain.
 
-## Notes on cryptography
-Ed25519 -> schorr, ZKP
+#### 3. Ensure privacy and unlinkability
+While data, stored onchain is public, only parties, authorized by Sovereign or his delegates, can have access
+to semantics of these data unless it's permitted by Sovereign or other authoritative party.
+
+#### 5. Ensure unforgeability
+It must be impossible for a malicious individual to tamper credentials or signatures.
+
+### VC anchor
+The Everscale smart contracts for the VC management can be found at GitHub:
+[identix-ssi-contracts](https://github.com/identix-space/identix-ssi-contracts/tree/master/anchor/everscale/vc-management)
+
+Claim groups are represented as the following structure:
+```
+struct ClaimGroup
+{
+    // HMAC-secured hashes
+    uint64 hmacHigh_groupDid;
+    uint64 hmacHigh_claimGroup;
+
+    // 512 bit long signature of the full claimGroup hash
+    uint256 signHighPart;
+    uint256 signLowPart;
+}
+```
+`hmacHigh_groupDid` represent high 64 bits of HMAC of a claim group id
+
+`hmacHigh_claimGroup` represent high 64 bits of HMAC of a claim group body 
+
+`signHighPart` and `signLowPart` are parts of a signature, produced with original claim group HMAC and issuer(s)' private key
+
+> Current implementation uses simple Ed25519 signature, but many more advanced techniques can be used as a part of
+> alternative VCBP protocols: Schnorr, BLS, BBS+ or CL.
