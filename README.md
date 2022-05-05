@@ -23,7 +23,7 @@ The self-sovereign identity (SSI) concept appears to be one of the most prominen
 The trust triangle, which is the core of the SSI ecosystem, presumes that **the Holder** owns his decentralized identifier (DID) and holds privately his verifiable credentials (VCs) issued by authorized actors - **Issuers**. These credentials are accepted and verified by **Verifiers.**
 
 <p align="left">
-<img src="docs/trust-triangle.png" width="95%"/>
+<img src="docs/trust_triangle.png" width="50%"/>
 
 
 ## What is a Decentralized Identifier
