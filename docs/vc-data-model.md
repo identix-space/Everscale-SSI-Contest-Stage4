@@ -220,3 +220,8 @@ struct ClaimGroup
 
 > Current implementation uses simple Ed25519 signature, but many more advanced techniques can be used as a part of
 > alternative VCBP protocols: Schnorr, BLS, BBS+ or CL.
+
+> Release Note:
+> For the relesed version (05-05-2022) VC anchoring smart contracts are ready, unit test (TS4) are functional and the VC Fabric smart contract is deployed
+> at [`0:6c33236486c501865c88a67c59f50a74568ef7492c22db400bccf179483c0880`](https://ever.live/accounts/accountDetails?id=0%3A6c33236486c501865c88a67c59f50a74568ef7492c22db400bccf179483c0880).
+> However, we're still resolving issues with Everscale JS SDK, hampering VC anchor deployement. Patience, we're going to fix it soon!
