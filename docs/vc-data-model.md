@@ -23,9 +23,9 @@ digital trust relationships the Stage 4 implementation covers the following, as 
 >1. The Issuer issues Verifiable Credentials with assertions about the subject.
 >2. The Holder possesses Verifiable Credentials and presents them to Verifiers.
 >3. The Verifier ensures:
->   1. VC’s relation to the certain statement
->   2. VC’s relation with the Subject
->   3. VC is authentic (cryptographically certified by the Issuer)
+>    1. VC’s relation to the certain statement
+>    2. VC’s relation with the Subject
+>    3. VC is authentic (cryptographically certified by the Issuer)
 
 According to this requirement, the Stage 4 solution realizes the following procedures:
 1. An Agent signs in to Identix.PASS and can act impersonating any of normative roles:
