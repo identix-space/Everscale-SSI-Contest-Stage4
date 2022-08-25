@@ -149,7 +149,7 @@ so the definitions can be validated by any [JSON Schema validator](http://json-s
 ![metaschematic](metaschemas.png)
 
 > The Stage 4 schema repository contains a Python 3 validator script that does the validation of the whole set of schemas
-> See here [https://github.com/identix-space/schemas](https://github.com/identix-space/schemas)
+> See here [https://github.com/identix-space/identix-ssi-contracts](https://github.com/identix-space/identix-ssi-contracts)
 
 ### Example
 Let the DID `did:ever:123` was acquired by a respected individual we know as Pete Petrov. Then the triplet<br>
