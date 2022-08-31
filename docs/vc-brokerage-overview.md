@@ -52,7 +52,7 @@ by a decentralized identifier (DID), capable to perform protocol operations via 
 ![VCBP Agency](vcbp-agency.png)
 
 > While generally DID operations starting from authentication are controlled by privately held secret key(s),
-> the presented solution offers 'custodial wallets' and [Single Sign-On service]() as an intermediate solution 
+> the presented solution offers 'custodial wallets' and [Single Sign-On service](https://github.com/identix-space/identix-sso-service) as an intermediate solution 
 > for users who want to use their Web2 authentication services for the operations, that require DIDs.
 
 The VCBP is a protocol that regulates how verifiable credentials are issued, signed, stored, transmitted, 
