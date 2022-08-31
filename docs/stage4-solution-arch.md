@@ -40,8 +40,8 @@ DID management system we previously created at Stage 3. Everscale blockchain is 
 the developed `did:ever` [method]() is used to construct DIDs.
 
 The DID anchoring subsystem is designed with the two smart contracts:
-1. The DID fabric and controller: `IdxDidRegistry` [(code)]()
-2. The DID document anchor: `IdxDidDocument` [(code)]()
+1. The DID fabric and controller: `IdxDidRegistry` [(code)](https://github.com/identix-space/identix-ssi-contracts/blob/master/anchor/everscale/did-management/IdxDidRegistry.sol)
+2. The DID document anchor: `IdxDidDocument` [(code)](https://github.com/identix-space/identix-ssi-contracts/blob/master/anchor/everscale/did-management/IdxDidDocument.sol)
 
 > For Stage 4, the main purpose of `IdxDidDocument` is to bind a user DID with a user public key. 
 Further development may include extensions to that by adding e.g. capability or delegation relationships,
