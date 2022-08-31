@@ -53,3 +53,5 @@ Read about VC data model, VC Lifecycle and VC Claims Specification protocol [her
 [identix-wallets](https://github.com/identix-space/identix-wallets) - custodial SSI wallets to control DIDs/VCs
 
 [identix-sso-service](https://github.com/identix-space/identix-sso-service), [identix-sso-ui](https://github.com/identix-space/identix-sso-ui) - Single Sign-On solution using identix-wallets
+
+[identix-ssi-contracts](https://github.com/identix-space/identix-ssi-contracts) - DID and VC anchoring smart contracts, VC schemas
